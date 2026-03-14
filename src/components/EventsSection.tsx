@@ -67,7 +67,7 @@ export default function EventsSection() {
               className="group overflow-hidden rounded-2xl bg-white shadow-lg shadow-secondary/8 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-secondary/12"
             >
               {/* Card Image with Date Badge */}
-              <div className="relative h-56 w-full overflow-hidden bg-tertiary sm:h-60">
+              <div className="relative h-48 w-full overflow-hidden bg-tertiary sm:h-56 md:h-60">
                 <Image
                   src={event.image}
                   alt={event.title}

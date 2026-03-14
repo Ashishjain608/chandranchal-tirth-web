@@ -143,7 +143,7 @@ export default function Header() {
           }}
         />
 
-        <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 lg:h-20">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 sm:h-18 lg:h-20">
           {/* ---- Logo / Temple Name ---- */}
           <a
             href="#home"
@@ -175,7 +175,7 @@ export default function Header() {
           </a>
 
           {/* ---- Desktop Navigation ---- */}
-          <nav className="hidden items-center gap-1 lg:flex" role="navigation">
+          <nav className="hidden items-center gap-1 lg:flex lg:gap-2" role="navigation">
             {NAV_ITEMS.map((item) => {
               const isDonate = item.label === "Donate";
 
@@ -185,7 +185,7 @@ export default function Header() {
                     key={item.label}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className="ml-3 inline-flex items-center rounded-full bg-primary px-6 py-2 font-[family-name:var(--font-oswald)] text-sm font-medium tracking-wide text-white shadow-md shadow-primary/30 transition-all duration-300 hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/40 active:scale-95"
+                    className="ml-2 inline-flex items-center rounded-full bg-primary px-5 py-2 font-[family-name:var(--font-oswald)] text-sm font-medium tracking-wide text-white shadow-md shadow-primary/30 transition-all duration-300 hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/40 active:scale-95 xl:ml-3 xl:px-6"
                   >
                     {item.label}
                   </a>

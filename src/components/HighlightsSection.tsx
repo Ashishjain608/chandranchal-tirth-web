@@ -111,7 +111,7 @@ export default function HighlightsSection() {
     >
       {/* Inner wrapper with generous vertical padding */}
       <div
-        className={`mx-auto max-w-7xl px-6 py-[100px] sm:px-10 lg:px-16
+        className={`mx-auto max-w-7xl px-4 py-[100px] sm:px-6 lg:px-8
                     transition-all duration-[800ms] ease-out
                     ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
       >

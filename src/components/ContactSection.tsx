@@ -171,10 +171,10 @@ export default function ContactSection() {
           </div>
 
           {/* Right column - Google Maps */}
-          <div className="relative">
+          <div className="relative mx-3 sm:mx-0">
             {/* Decorative frame behind the map */}
             <div
-              className="absolute -right-3 -bottom-3 h-full w-full rounded-lg border-2 border-primary/30"
+              className="absolute -right-2 -bottom-2 h-full w-full rounded-lg border-2 border-primary/30 sm:-right-3 sm:-bottom-3"
               aria-hidden="true"
             />
 

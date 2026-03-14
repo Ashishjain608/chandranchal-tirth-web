@@ -52,18 +52,18 @@ export default function AboutSection() {
         {/* Two-column layout */}
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left column - Image */}
-          <div className="relative">
+          <div className="relative mx-4 sm:mx-0">
             {/* Decorative frame behind the image */}
             <div
-              className="absolute -right-4 -bottom-4 h-full w-full rounded-lg border-2 border-primary"
+              className="absolute -right-3 -bottom-3 h-full w-full rounded-lg border-2 border-primary sm:-right-4 sm:-bottom-4"
               aria-hidden="true"
             />
             <div
-              className="absolute -top-4 -left-4 h-24 w-24 border-t-4 border-l-4 border-primary rounded-tl-lg"
+              className="absolute -top-3 -left-3 h-16 w-16 border-t-4 border-l-4 border-primary rounded-tl-lg sm:-top-4 sm:-left-4 sm:h-24 sm:w-24"
               aria-hidden="true"
             />
             <div
-              className="absolute -right-4 -bottom-4 h-24 w-24 border-r-4 border-b-4 border-primary rounded-br-lg z-10"
+              className="absolute -right-3 -bottom-3 h-16 w-16 border-r-4 border-b-4 border-primary rounded-br-lg z-10 sm:-right-4 sm:-bottom-4 sm:h-24 sm:w-24"
               aria-hidden="true"
             />
 

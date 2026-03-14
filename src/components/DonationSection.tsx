@@ -95,7 +95,7 @@ export default function DonationSection() {
             return (
               <div
                 key={index}
-                className="group rounded-2xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:bg-white/10"
+                className="group rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:bg-white/10 sm:p-8"
               >
                 {/* Icon */}
                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/15 transition-colors duration-500 group-hover:bg-primary/25">

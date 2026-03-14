@@ -233,7 +233,7 @@ export default function GallerySection() {
             <span className="font-decorative text-3xl md:text-4xl text-primary inline-block mb-2">
               {GALLERY_SECTION.sectionLabel}
             </span>
-            <h2 className="font-[family-name:var(--font-oswald)] text-3xl md:text-4xl lg:text-5xl font-medium text-secondary uppercase tracking-wider mb-4">
+            <h2 className="font-[family-name:var(--font-oswald)] text-3xl font-semibold text-secondary uppercase tracking-wide mb-4 sm:text-4xl lg:text-5xl">
               {GALLERY_SECTION.heading}
             </h2>
             <p className="text-text-light text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
@@ -248,7 +248,7 @@ export default function GallerySection() {
           </div>
 
           {/* Masonry-style Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 auto-rows-[180px] md:auto-rows-[200px]">
+          <div className="grid grid-cols-1 gap-4 auto-rows-[220px] sm:grid-cols-2 sm:auto-rows-[200px] lg:grid-cols-4 md:gap-5">
             {GALLERY_SECTION.images.map((image, index) => {
               const showPlaceholder = imageErrors.has(index);
               const spanRows = ROW_SPANS[index] || 1;
@@ -257,7 +257,7 @@ export default function GallerySection() {
                 <div
                   key={index}
                   className={`gallery-item group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 ${
-                    spanRows === 2 ? "row-span-2" : "row-span-1"
+                    spanRows === 2 ? "sm:row-span-2" : "row-span-1"
                   }`}
                   style={{
                     animationDelay: `${index * 100}ms`,
