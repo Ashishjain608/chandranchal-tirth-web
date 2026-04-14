@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import { NAV_ITEMS, SITE_META } from "@/constants/content";
 
@@ -80,46 +81,18 @@ export default function Header() {
     []
   );
 
-  // ---- Jain Swastik decorative SVG ----
-  const SwastikSymbol = () => (
-    <svg
-      width="28"
-      height="28"
-      viewBox="0 0 100 100"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={`transition-colors duration-300 ${
-        isScrolled ? "text-primary" : "text-primary-light"
-      }`}
-      aria-hidden="true"
-    >
-      {/* Jain Swastik - four arms */}
-      <g fill="currentColor">
-        {/* Center */}
-        <rect x="42" y="42" width="16" height="16" rx="2" />
-        {/* Top arm */}
-        <rect x="42" y="8" width="16" height="34" rx="2" />
-        {/* Right hook on top */}
-        <rect x="58" y="8" width="28" height="12" rx="2" />
-        {/* Bottom arm */}
-        <rect x="42" y="58" width="16" height="34" rx="2" />
-        {/* Left hook on bottom */}
-        <rect x="14" y="80" width="28" height="12" rx="2" />
-        {/* Right arm */}
-        <rect x="58" y="42" width="34" height="16" rx="2" />
-        {/* Bottom hook on right */}
-        <rect x="80" y="58" width="12" height="28" rx="2" />
-        {/* Left arm */}
-        <rect x="8" y="42" width="34" height="16" rx="2" />
-        {/* Top hook on left */}
-        <rect x="8" y="14" width="12" height="28" rx="2" />
-      </g>
-      {/* Three dots - representing the three jewels of Jainism */}
-      <circle cx="24" cy="24" r="5" fill="currentColor" />
-      <circle cx="76" cy="24" r="5" fill="currentColor" />
-      <circle cx="76" cy="76" r="5" fill="currentColor" />
-      <circle cx="24" cy="76" r="5" fill="currentColor" />
-    </svg>
+  // ---- Temple Logo Image ----
+  const TempleLogo = () => (
+    <div className="relative h-8 w-8 flex-shrink-0 overflow-hidden rounded sm:h-9 sm:w-9 lg:h-10 lg:w-10">
+      <Image
+        src="/images/logo.jpg"
+        alt="Chandraanchal Swasti Teerth Logo"
+        fill
+        sizes="40px"
+        className="object-cover"
+        priority
+      />
+    </div>
   );
 
   return (
@@ -152,7 +125,7 @@ export default function Header() {
           >
             {/* Swastik Symbol */}
             <div className="flex-shrink-0">
-              <SwastikSymbol />
+              <TempleLogo />
             </div>
 
             {/* Name block */}
@@ -262,7 +235,7 @@ export default function Header() {
       >
         {/* Drawer header */}
         <div className="flex flex-col items-center border-b border-tertiary px-6 pt-20 pb-6">
-          <SwastikSymbol />
+          <TempleLogo />
           <h2 className="mt-3 font-[family-name:var(--font-oswald)] text-lg font-semibold tracking-wide text-secondary">
             {SITE_META.title}
           </h2>

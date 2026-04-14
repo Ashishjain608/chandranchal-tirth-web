@@ -17,6 +17,13 @@ const SLIDE_GRADIENTS = [
   "linear-gradient(135deg, #3a4e5a 0%, #4a6078 40%, #5a7088 100%)",
 ];
 
+// Per-slide background positioning (portrait images need top-center to show subject)
+const SLIDE_POSITIONS = [
+  "center 30%", // hero-1: idol — show upper portion with face & crown
+  "center 25%", // hero-2: Mataji — show upper portion with face
+  "center",     // hero-3: landscape sanctum — centered works fine
+];
+
 export default function HeroCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -46,27 +53,27 @@ export default function HeroCarousel() {
       >
         {HERO_SLIDES.map((slide, index) => (
           <SwiperSlide key={slide.id} className="relative h-full w-full">
-            {/* Background with Ken Burns effect */}
+            {/* Gradient fallback — always behind everything */}
             <div
-              className={`absolute inset-0 h-full w-full ${
-                activeIndex === index ? "ken-burns" : ""
+              className="absolute inset-0"
+              style={{
+                background:
+                  SLIDE_GRADIENTS[index % SLIDE_GRADIENTS.length],
+              }}
+            />
+
+            {/* Background image — always rendered, Ken Burns only when active */}
+            <div
+              className={`absolute inset-0 h-full w-full transition-transform duration-[20000ms] ease-in-out ${
+                activeIndex === index ? "scale-[1.12]" : "scale-100"
               }`}
               style={{
                 backgroundImage: `url(${slide.image})`,
                 backgroundSize: "cover",
-                backgroundPosition: "center",
+                backgroundPosition: SLIDE_POSITIONS[index] || "center",
                 backgroundRepeat: "no-repeat",
               }}
-            >
-              {/* Gradient fallback behind the image */}
-              <div
-                className="absolute inset-0 -z-10"
-                style={{
-                  background:
-                    SLIDE_GRADIENTS[index % SLIDE_GRADIENTS.length],
-                }}
-              />
-            </div>
+            />
 
             {/* Dark gradient overlay for text readability */}
             <div className="gradient-overlay absolute inset-0 z-10" />

@@ -7,6 +7,7 @@ import {
   HiOutlineMail,
   HiOutlineClock,
 } from "react-icons/hi";
+import { FaWhatsapp } from "react-icons/fa";
 import { CONTACT_SECTION } from "@/constants/content";
 
 export default function ContactSection() {
@@ -65,6 +66,11 @@ export default function ContactSection() {
             {CONTACT_SECTION.heading}
           </h2>
 
+          {/* English subline */}
+          <p className="mt-1 font-[family-name:var(--font-oswald)] text-lg tracking-wide text-secondary/70 sm:text-xl">
+            {CONTACT_SECTION.headingEnglish}
+          </p>
+
           {/* Subheading */}
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-text-light">
             {CONTACT_SECTION.subheading}
@@ -122,6 +128,40 @@ export default function ContactSection() {
                 >
                   {CONTACT_SECTION.phone}
                 </a>
+                {/* Additional phones */}
+                {CONTACT_SECTION.additionalPhones &&
+                  CONTACT_SECTION.additionalPhones.map((phone, index) => (
+                    <a
+                      key={index}
+                      href={`tel:${phone.replace(/\s/g, "")}`}
+                      className="block text-text-light leading-relaxed transition-colors duration-300 hover:text-primary"
+                    >
+                      {phone}
+                    </a>
+                  ))}
+              </div>
+            </div>
+
+            {/* WhatsApp */}
+            <div className="flex items-start gap-5">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-50">
+                <FaWhatsapp className="h-6 w-6 text-green-600" />
+              </div>
+              <div>
+                <h3 className="font-[family-name:var(--font-oswald)] text-lg font-semibold tracking-wide text-secondary">
+                  WhatsApp
+                </h3>
+                <a
+                  href={CONTACT_SECTION.whatsapp.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-1 inline-flex items-center gap-2 text-green-600 leading-relaxed transition-colors duration-300 hover:text-green-700"
+                >
+                  <span>{CONTACT_SECTION.phone}</span>
+                  <span className="text-xs font-medium bg-green-50 border border-green-200 rounded-full px-2 py-0.5">
+                    Chat
+                  </span>
+                </a>
               </div>
             </div>
 
@@ -168,6 +208,30 @@ export default function ContactSection() {
                 </div>
               </div>
             </div>
+
+            {/* Distances */}
+            {CONTACT_SECTION.distances && CONTACT_SECTION.distances.length > 0 && (
+              <div className="mt-4 rounded-xl border border-primary/20 bg-white/60 p-6">
+                <h3 className="font-[family-name:var(--font-oswald)] text-lg font-semibold tracking-wide text-secondary mb-4">
+                  दूरी <span className="text-sm font-normal text-secondary/60">(Distances)</span>
+                </h3>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {CONTACT_SECTION.distances.map((item, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center justify-between gap-2 rounded-lg bg-tertiary-light/50 px-4 py-2.5"
+                    >
+                      <span className="text-sm text-secondary font-medium">
+                        {item.place}
+                      </span>
+                      <span className="text-sm text-primary font-semibold whitespace-nowrap">
+                        {item.distance}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Right column - Google Maps */}

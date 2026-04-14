@@ -1,5 +1,5 @@
 // ============================================================
-// CHANDRANCHAL SWASTHI TEERTH - STATIC CONTENT CONSTANTS
+// CHANDRANCHAL SWASTI TEERTH - STATIC CONTENT CONSTANTS
 // ============================================================
 // All static text content is organized here for easy updates.
 // Simply modify the values below to update the website content.
@@ -7,12 +7,12 @@
 
 // ----- SITE META -----
 export const SITE_META = {
-  title: "Chandranchal Swasthi Teerth",
+  title: "Chandraanchal Swasti Teerth",
   tagline: "श्री चंद्रांचल स्वस्ति तीर्थ",
   description:
-    "A sacred Jain pilgrimage destination dedicated to spiritual growth, peace, and the eternal teachings of Lord Mahavir.",
+    "श्री दिगंबर चंद्रांचल स्वस्ति तीर्थ - जैन अतिशय क्षेत्र प्यावड़ी, तह. पीपलू, जिला टोंक, राजस्थान। A sacred Jain pilgrimage destination dedicated to Lord Chandraprabhu.",
   keywords:
-    "Jain temple, Chandranchal, Swasthi Teerth, Jain Tirth, Pyawadi, Rajasthan, Jain pilgrimage",
+    "Jain temple, Chandraanchal, Swasti Teerth, Jain Tirth, Pyawadi, Pyawari, Peepal, Tonk, Rajasthan, Digambar Jain, Chandraprabhu, अतिशय क्षेत्र, चंद्रांचल स्वस्ति तीर्थ",
   ogImage: "/images/og-image.jpg",
 };
 
@@ -20,10 +20,11 @@ export const SITE_META = {
 export const NAV_ITEMS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Highlights", href: "#highlights" },
+  { label: "Atishay", href: "#atishay" },
   { label: "Gallery", href: "#gallery" },
   { label: "Events", href: "#events" },
-  { label: "Donate", href: "#donate" },
+  { label: "Yojanayen", href: "#yojanayen" },
+  { label: "Documents", href: "#documents" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -32,20 +33,20 @@ export const HERO_SLIDES = [
   {
     id: 1,
     heading: "श्री चंद्रांचल स्वस्ति तीर्थ",
-    subheading: "Chandranchal Swasthi Teerth",
+    subheading: "Chandraanchal Swasti Teerth",
     description:
-      "A divine abode of peace, devotion, and spiritual enlightenment nestled in the heart of Rajasthan.",
-    buttonText: "Explore More",
+      "श्री दिगंबर जैन अतिशय क्षेत्र प्यावड़ी, तह. पीपलू, जिला टोंक, राजस्थान — A divine abode of peace and spiritual enlightenment.",
+    buttonText: "और जानें",
     buttonLink: "#about",
     image: "/images/hero-1.jpg",
   },
   {
     id: 2,
     heading: "अहिंसा परमो धर्मः",
-    subheading: "Ahimsa Paramo Dharma",
+    subheading: "Non-violence is the Supreme Religion",
     description:
-      "Non-violence is the supreme religion. Experience the timeless teachings of Jainism at our sacred teerth.",
-    buttonText: "Plan Your Visit",
+      "गणिनी आर्यिका श्री स्वस्तिभूषण माता जी के पावन सानिध्य में अनुभव करें जैन धर्म की शाश्वत शिक्षाओं को।",
+    buttonText: "संपर्क करें",
     buttonLink: "#contact",
     image: "/images/hero-2.jpg",
   },
@@ -54,212 +55,414 @@ export const HERO_SLIDES = [
     heading: "आत्मा की शांति का मार्ग",
     subheading: "Path to Inner Peace",
     description:
-      "Immerse yourself in meditation, prayer, and the serene atmosphere of this holy pilgrimage site.",
-    buttonText: "Donate Now",
-    buttonLink: "#donate",
+      "800 वर्ष से अधिक पुरानी प्रतिमाओं वाले इस पावन अतिशय क्षेत्र में ध्यान, प्रार्थना एवं शांति का अनुभव करें।",
+    buttonText: "दान करें",
+    buttonLink: "#yojanayen",
     image: "/images/hero-3.jpg",
   },
 ];
 
-// ----- ABOUT SECTION -----
+// ----- ABOUT SECTION (No tabs — temple + mataji stacked) -----
 export const ABOUT_SECTION = {
-  sectionLabel: "About Us",
-  heading: "श्री चंद्रांचल स्वस्ति तीर्थ",
-  headingEnglish: "A Sacred Pilgrimage Destination",
-  paragraphs: [
-    "Chandranchal Swasthi Teerth is a revered Jain pilgrimage site located in Pyawadi, Rajasthan. This sacred destination is dedicated to the preservation and propagation of Jain teachings, serving as a beacon of spiritual enlightenment for devotees from across the world.",
-    "The teerth features magnificent architecture that reflects the rich heritage of Jain temple construction, with intricate carvings, serene meditation halls, and beautifully maintained gardens that inspire peace and contemplation.",
-    "Our mission is to provide a tranquil environment where devotees can deepen their spiritual practice, study the teachings of the Tirthankars, and find inner peace through meditation and prayer.",
-  ],
-  image: "/images/about-temple.jpg",
-  stats: [
-    { number: "1000+", label: "Devotees Monthly" },
-    { number: "24", label: "Tirthankars Honored" },
-    { number: "365", label: "Days of Service" },
-    { number: "50+", label: "Years of Heritage" },
-  ],
+  sectionLabel: "हमारे बारे में",
+  temple: {
+    heading: "श्री चंद्रांचल स्वस्ति तीर्थ",
+    headingEnglish: "A Sacred Jain Pilgrimage Destination",
+    paragraphs: [
+      "श्री चंद्रांचल स्वस्ति तीर्थ, प्यावड़ी (तह. पीपलू, जिला टोंक, राजस्थान) एक प्राचीन एवं ऐतिहासिक दिगंबर जैन अतिशय क्षेत्र है। यहाँ विराजमान श्री 1008 चंद्रप्रभु भगवान मूलनायक के रूप में पूजित हैं।",
+      "इस पावन क्षेत्र में विक्रम संवत 1904 से 1919 तक की प्राचीन प्रतिमाएँ स्थापित हैं, जो 800 वर्ष से अधिक पुरानी हैं। मंदिर परिसर में कुल 15 पवित्र प्रतिमाएँ विराजमान हैं।",
+      "यहाँ 33 से अधिक प्रमाणित अतिशय (चमत्कार) घटित हुए हैं, जिनमें प्रतिमाओं पर केसर प्रकट होना प्रमुख है। यह क्षेत्र श्री स्वस्ति कल्याण समिति (रजि.), दिल्ली द्वारा संचालित है।",
+    ],
+    image: "/images/about-temple.jpg",
+    stats: [
+      { number: "800+", label: "वर्ष प्राचीन" },
+      { number: "15", label: "पवित्र प्रतिमाएँ" },
+      { number: "33+", label: "प्रमाणित अतिशय" },
+      { number: "1000+", label: "मासिक दर्शनार्थी" },
+    ],
+  },
+  mataji: {
+    heading: "गणिनी आर्यिका १०५ श्री स्वस्तिभूषण माता जी",
+    headingEnglish: "Our Spiritual Guide",
+    paragraphs: [
+      "भारत गौरव, परम विदुषी, लेखिका, शास्त्रवाचनिका, जादूपुरी स्वस्तिधाम तीर्थ प्रणेत्री गणिनी आर्यिका १०५ श्री स्वस्तिभूषण माता जी चंद्रांचल स्वस्ति तीर्थ की प्रेरणास्रोत एवं मार्गदर्शिका हैं।",
+      "माता जी ने 30 से अधिक वर्ष पूर्व दीक्षा ग्रहण की और तब से जैन धर्म के प्रचार-प्रसार, आध्यात्मिक शिक्षा एवं समाज सेवा में अपना जीवन समर्पित किया है।",
+      "उनके पावन सानिध्य में अनेक तीर्थ क्षेत्रों का विकास हुआ है, जिनमें श्री मुनिसुव्रतनाथ दिगंबर जैन अतिशय क्षेत्र स्वस्तिधाम, जहाजपुर (भीलवाड़ा) प्रमुख है।",
+    ],
+    image: "/images/about-mataji.jpg",
+    thumbnails: [
+      { src: "/images/mataji-blessing.jpg", alt: "माता जी — आशीर्वाद" },
+      { src: "/images/mataji-joyful.jpg", alt: "माता जी — प्रसन्न मुद्रा" },
+      { src: "/images/mataji-candid.jpg", alt: "माता जी — सहज मुद्रा" },
+    ],
+    stats: [
+      { number: "30+", label: "वर्ष दीक्षित" },
+      { number: "100+", label: "ग्रंथ लिखित" },
+      { number: "1000+", label: "प्रवचन" },
+      { number: "5+", label: "तीर्थ विकसित" },
+    ],
+  },
 };
 
-// ----- HIGHLIGHTS / FEATURES SECTION -----
-export const HIGHLIGHTS_SECTION = {
-  sectionLabel: "Our Highlights",
-  heading: "What Makes Us Special",
-  subheading: "Discover the unique features of Chandranchal Swasthi Teerth",
-  items: [
+// ----- ATISHAY SECTION (Miracles / replaces old HIGHLIGHTS) -----
+export const ATISHAY_SECTION = {
+  sectionLabel: "अतिशय विवरण",
+  heading: "प्रमाणित चमत्कारिक घटनाएँ",
+  headingEnglish: "Documented Miraculous Events",
+  subheading: "श्री चंद्रांचल स्वस्ति तीर्थ पर घटित दिव्य अतिशय",
+  image: "/images/atishay-deity.jpg",
+  events: [
     {
+      title: "प्रतिमाओं पर केसर प्रकट",
+      description:
+        "मूलनायक श्री चंद्रप्रभु भगवान एवं अन्य प्रतिमाओं पर स्वतः केसर प्रकट होना — यह अतिशय अनेक बार प्रमाणित हुआ है।",
+      icon: "kesar",
+    },
+    {
+      title: "प्राचीन प्रतिमाओं की प्राप्ति",
+      description:
+        "विक्रम संवत 1904-1919 काल की अत्यंत प्राचीन प्रतिमाएँ इस क्षेत्र से प्राप्त हुई हैं, जो इसकी ऐतिहासिकता का प्रमाण हैं।",
+      icon: "idol",
+    },
+    {
+      title: "अभिषेक के समय दिव्य संकेत",
+      description:
+        "पंचकल्याणक महोत्सव एवं विशेष अभिषेक के अवसर पर दिव्य एवं शुभ संकेत प्रकट होना।",
+      icon: "abhishek",
+    },
+    {
+      title: "आचार्यों एवं साधु-साध्वियों का आगमन",
+      description:
+        "आचार्य श्री 108 इंद्रनंदि जी महाराज, आचार्य श्री 108 विद्यानंद सागर जी सहित अनेक संतों ने इस क्षेत्र को अपने चरणों से पावन किया है।",
+      icon: "saints",
+    },
+    {
+      title: "शिलान्यास समारोह 2026",
+      description:
+        "जनवरी 2026 में भव्य जिन मंदिर शिलान्यास समारोह एवं 30वां दीक्षा जयंती महोत्सव का सफल आयोजन — 115 प्रतिमाएँ, 5 महाकलश, 5 यज्ञ।",
       icon: "temple",
-      title: "Divine Architecture",
-      description:
-        "Magnificent temple architecture with intricate marble carvings and traditional Jain design elements that inspire awe and devotion.",
     },
     {
-      icon: "meditation",
-      title: "Meditation Center",
+      title: "800+ वर्ष का इतिहास",
       description:
-        "A serene meditation hall where devotees can practice dhyana and experience deep inner peace away from worldly distractions.",
-    },
-    {
-      icon: "book",
-      title: "Scriptural Studies",
-      description:
-        "Regular classes and discourses on Jain agamas, philosophy, and the teachings of Lord Mahavir and other Tirthankars.",
-    },
-    {
-      icon: "community",
-      title: "Community Service",
-      description:
-        "Active community engagement through charitable activities, food distribution, and support for those in need.",
-    },
-    {
-      icon: "garden",
-      title: "Sacred Gardens",
-      description:
-        "Beautifully landscaped gardens providing a peaceful atmosphere for contemplation and spiritual reflection.",
-    },
-    {
-      icon: "calendar",
-      title: "Festival Celebrations",
-      description:
-        "Grand celebrations of Jain festivals including Mahavir Jayanti, Paryushana, and Das Lakshana with great devotion.",
+        "प्यावड़ी एक प्राचीन एवं ऐतिहासिक अतिशय क्षेत्र है जिसकी मूर्तियाँ 800 वर्ष से अधिक पुरानी हैं — यह राजस्थान के प्रमुख जैन तीर्थों में से एक है।",
+      icon: "history",
     },
   ],
 };
 
-// ----- GALLERY SECTION -----
+// ----- GALLERY SECTION (no category tabs — flat image list + videos) -----
 export const GALLERY_SECTION = {
-  sectionLabel: "Gallery",
-  heading: "Sacred Glimpses",
-  subheading: "Explore the beauty and serenity of Chandranchal Swasthi Teerth",
+  sectionLabel: "गैलरी",
+  heading: "पवित्र दृश्य",
+  headingEnglish: "Sacred Glimpses",
+  subheading: "चंद्रांचल स्वस्ति तीर्थ की दिव्य छवियाँ एवं वीडियो",
   images: [
     {
       src: "/images/gallery-1.jpg",
-      alt: "Main temple view of Chandranchal Swasthi Teerth",
-      caption: "Main Temple",
+      alt: "श्री चंद्रप्रभु भगवान — मूलनायक",
+      caption: "श्री चंद्रप्रभु भगवान (मूलनायक)",
     },
     {
       src: "/images/gallery-2.jpg",
-      alt: "Interior of the prayer hall",
-      caption: "Prayer Hall",
+      alt: "मुख्य मंदिर गर्भगृह का विहंगम दृश्य",
+      caption: "मुख्य मंदिर गर्भगृह",
     },
     {
       src: "/images/gallery-3.jpg",
-      alt: "Intricate marble carvings",
-      caption: "Marble Carvings",
+      alt: "पवित्र प्रतिमाओं का समूह",
+      caption: "पवित्र मूर्तियाँ",
     },
     {
       src: "/images/gallery-4.jpg",
-      alt: "Temple garden and pathways",
-      caption: "Temple Gardens",
+      alt: "प्राचीन क्षेत्रपाल देव प्रतिमा",
+      caption: "प्राचीन क्षेत्रपाल देव",
     },
     {
       src: "/images/gallery-5.jpg",
-      alt: "Festival celebrations at the temple",
-      caption: "Festival Celebrations",
+      alt: "वर्तमान मंदिर भवन — प्यावड़ी",
+      caption: "वर्तमान मंदिर भवन",
     },
     {
       src: "/images/gallery-6.jpg",
-      alt: "Meditation area",
-      caption: "Meditation Area",
+      alt: "माता जी मंदिर परिसर में",
+      caption: "माता जी मंदिर परिसर में",
     },
     {
       src: "/images/gallery-7.jpg",
-      alt: "Evening aarti at the temple",
-      caption: "Evening Aarti",
+      alt: "श्री स्वस्तिभूषण माता जी",
+      caption: "श्री स्वस्तिभूषण माता जी",
     },
     {
       src: "/images/gallery-8.jpg",
-      alt: "Aerial view of the temple complex",
-      caption: "Temple Complex",
+      alt: "माता जी — आशीर्वाद मुद्रा",
+      caption: "माता जी — आशीर्वाद मुद्रा",
+    },
+    {
+      src: "/images/event-1.jpg",
+      alt: "शिलान्यास समारोह — जनवरी 2026",
+      caption: "शिलान्यास समारोह एवं 30वां दीक्षा जयंती महोत्सव",
+    },
+    {
+      src: "/images/mataji-blessing.jpg",
+      alt: "माता जी — आशीर्वाद",
+      caption: "माता जी — आशीर्वाद",
+    },
+    {
+      src: "/images/mataji-joyful.jpg",
+      alt: "माता जी — प्रसन्न मुद्रा",
+      caption: "माता जी — प्रसन्न मुद्रा",
+    },
+    {
+      src: "/images/mataji-standing.jpg",
+      alt: "माता जी — पूर्ण दृश्य",
+      caption: "माता जी — पूर्ण दृश्य",
+    },
+  ],
+  videos: [
+    {
+      src: "/videos/sanctum-darshan.mp4",
+      caption: "मुख्य गर्भगृह दर्शन",
+      thumbnail: "/images/gallery-2.jpg",
+    },
+    {
+      src: "/videos/abhishek-puja.mp4",
+      caption: "अभिषेक पूजा",
+      thumbnail: "/images/gallery-1.jpg",
+    },
+    {
+      src: "/videos/sacred-idols.mp4",
+      caption: "पवित्र मूर्तियाँ",
+      thumbnail: "/images/gallery-3.jpg",
+    },
+    {
+      src: "/videos/community-gathering.mp4",
+      caption: "भव्य समारोह",
+      thumbnail: "/images/event-1.jpg",
+    },
+    {
+      src: "/videos/puja-ceremony.mp4",
+      caption: "अभिषेक पूजा दृश्य",
+      thumbnail: "/images/gallery-1.jpg",
     },
   ],
 };
+
+// ----- IMAGE MARQUEE ITEMS -----
+export const IMAGE_MARQUEE_ITEMS = [
+  { src: "/images/gallery-1.jpg", alt: "श्री चंद्रप्रभु भगवान" },
+  { src: "/images/about-mataji.jpg", alt: "श्री स्वस्तिभूषण माता जी" },
+  { src: "/images/gallery-2.jpg", alt: "मुख्य मंदिर गर्भगृह" },
+  { src: "/images/mataji-blessing.jpg", alt: "माता जी — आशीर्वाद" },
+  { src: "/images/gallery-3.jpg", alt: "पवित्र मूर्तियाँ" },
+  { src: "/images/mataji-joyful.jpg", alt: "माता जी — प्रसन्न मुद्रा" },
+  { src: "/images/gallery-5.jpg", alt: "वर्तमान मंदिर भवन" },
+  { src: "/images/about-temple.jpg", alt: "चंद्रांचल स्वस्ति तीर्थ" },
+  { src: "/images/gallery-4.jpg", alt: "प्राचीन क्षेत्रपाल देव" },
+  { src: "/images/mataji-candid.jpg", alt: "माता जी — सहज मुद्रा" },
+  { src: "/images/event-1.jpg", alt: "शिलान्यास समारोह" },
+  { src: "/images/mataji-standing.jpg", alt: "माता जी" },
+];
 
 // ----- EVENTS SECTION -----
 export const EVENTS_SECTION = {
-  sectionLabel: "Upcoming Events",
-  heading: "Join Our Celebrations",
-  subheading:
-    "Participate in sacred festivals and spiritual gatherings at the teerth",
+  sectionLabel: "आयोजन",
+  heading: "कार्यक्रम एवं उत्सव",
+  headingEnglish: "Events & Celebrations",
+  subheading: "तीर्थ क्षेत्र पर आयोजित पवित्र उत्सवों में सम्मिलित हों",
+  emptyMessage: "कोई आगामी कार्यक्रम नहीं है",
   events: [
     {
-      title: "Mahavir Jayanti Celebration",
-      date: "April 10, 2026",
-      time: "6:00 AM - 9:00 PM",
+      title: "भव्य जिन मंदिर शिलान्यास समारोह",
+      titleEnglish: "Grand Temple Foundation Stone Ceremony",
+      date: "22-23 जनवरी 2026",
+      time: "सम्पूर्ण दिवस",
       description:
-        "Grand celebration of the birth anniversary of Lord Mahavir with special prayers, processions, and community meals.",
+        "भव्य जिन मंदिर शिलान्यास समारोह एवं गणिनी आर्यिका श्री स्वस्तिभूषण माता जी का 30वां दीक्षा जयंती महोत्सव। 115 प्रतिमाएँ, 5 महाकलश, 5 यज्ञ के साथ विशाल आयोजन।",
       image: "/images/event-1.jpg",
+      status: "completed" as const,
     },
     {
-      title: "Paryushana Mahaparv",
-      date: "August 2026",
-      time: "Throughout the week",
+      title: "साप्ताहिक सत्संग",
+      titleEnglish: "Weekly Satsang",
+      date: "प्रत्येक रविवार",
+      time: "प्रातः 10:00 - दोपहर 12:00",
       description:
-        "The most important Jain festival featuring eight days of fasting, prayer, and spiritual reflection.",
-      image: "/images/event-2.jpg",
+        "नियमित आध्यात्मिक प्रवचन एवं प्रार्थना सभा — सभी श्रद्धालुओं एवं जिज्ञासुओं के लिए खुली।",
+      image: "/images/gallery-1.jpg",
+      status: "recurring" as const,
     },
     {
-      title: "Weekly Satsang",
-      date: "Every Sunday",
-      time: "10:00 AM - 12:00 PM",
+      title: "पर्युषण महापर्व",
+      titleEnglish: "Paryushana Mahaparv",
+      date: "अगस्त 2026",
+      time: "सम्पूर्ण सप्ताह",
       description:
-        "Regular spiritual discourse and prayer gathering open to all devotees and spiritual seekers.",
-      image: "/images/event-3.jpg",
+        "जैन धर्म का सबसे महत्वपूर्ण पर्व — आठ दिवसीय उपवास, प्रार्थना एवं आध्यात्मिक चिंतन का महापर्व।",
+      image: "/images/gallery-2.jpg",
+      status: "upcoming" as const,
     },
   ],
 };
 
-// ----- DONATE SECTION -----
-export const DONATE_SECTION = {
-  sectionLabel: "Support Us",
-  heading: "Contribute to a Sacred Cause",
+// ----- YOJANAYEN SECTION (Donation Schemes — replaces old DONATE) -----
+export const YOJANAYEN_SECTION = {
+  sectionLabel: "योजनाएं",
+  heading: "सहयोग योजनाएं",
+  headingEnglish: "Donation Schemes",
+  subheading: "मंदिर निर्माण एवं धार्मिक कार्यों में अपना सहयोग दें",
+  schemes: [
+    {
+      id: "shantidhara",
+      title: "शांतिधारा योजना",
+      titleEnglish: "Shantidhara Scheme",
+      description:
+        "प्रतिदिन मूलनायक श्री चंद्रप्रभु भगवान का जलाभिषेक — आप अपने नाम से शांतिधारा बुक कर सकते हैं।",
+      pricing: [
+        { label: "दैनिक", amount: "₹100" },
+        { label: "मासिक", amount: "₹2,500" },
+        { label: "वार्षिक", amount: "₹21,000" },
+      ],
+      cta: { text: "शांतिधारा बुक करें", link: "#booking" },
+      icon: "shantidhara",
+    },
+    {
+      id: "mandir-nirman",
+      title: "मन्दिर निर्माण कार्य योजना",
+      titleEnglish: "Temple Construction Scheme",
+      description:
+        "भव्य जिन मंदिर निर्माण हेतु सहयोग राशि — विभिन्न श्रेणियों में दान का अवसर।",
+      posterImage: "/images/donation-poster.jpg",
+      highlights: [
+        { item: "मानस्तंभ", amount: "₹51 लाख" },
+        { item: "सिंह द्वार", amount: "₹51 लाख" },
+        { item: "मुख्य शिखर", amount: "₹21 लाख" },
+        { item: "तोरण द्वार", amount: "₹11 लाख" },
+      ],
+      cta: { text: "दान करें", link: "#donation" },
+      icon: "temple",
+    },
+  ],
+  bankDetails: {
+    accountName: "Shri Swasti Kalyan Samiti",
+    accountNo: "12880100019646",
+    ifsc: "BARB0PIPLOO",
+    bank: "Bank of Baroda, Peeplu Branch",
+    upiNote:
+      "UPI ID जल्द ही उपलब्ध होगा। कृपया बैंक ट्रांसफर या संपर्क अनुभाग का उपयोग करें।",
+  },
+};
+
+// ----- SHANTIDHARA SECTION (Booking) -----
+export const SHANTIDHARA_SECTION = {
+  sectionLabel: "शांतिधारा बुकिंग",
+  heading: "शांतिधारा बुक करें",
+  headingEnglish: "Book Shantidhara",
   subheading:
-    "Your generous donations help maintain the temple and support our community service activities",
-  description:
-    "Every contribution, big or small, helps us preserve this sacred space, organize spiritual events, and serve the community. Your donations support temple maintenance, food distribution, educational programs, and charitable activities.",
-  buttonText: "Donate Now",
-  buttonLink: "#contact",
-  donationCategories: [
+    "अपने नाम से मूलनायक श्री चंद्रप्रभु भगवान का जलाभिषेक बुक करें",
+  pricing: [
+    { label: "दैनिक", amount: "₹100", period: "प्रतिदिन" },
+    { label: "मासिक", amount: "₹2,500", period: "प्रतिमाह" },
+    { label: "वार्षिक", amount: "₹21,000", period: "प्रतिवर्ष" },
+  ],
+  form: {
+    nameLabel: "पूरा नाम",
+    namePlaceholder: "अपना पूरा नाम लिखें",
+    phoneLabel: "मोबाइल नंबर",
+    phonePlaceholder: "10 अंकों का मोबाइल नंबर",
+    occasionLabel: "उपलक्ष्य",
+    occasionPlaceholder: "जन्मदिन, पुण्यतिथि, आदि",
+    submitText: "WhatsApp पर भेजें",
+  },
+  whatsappNumber: "918124967610",
+};
+
+// ----- DOCUMENTS SECTION -----
+export const DOCUMENTS_SECTION = {
+  sectionLabel: "दस्तावेज़",
+  heading: "डाउनलोड करें",
+  headingEnglish: "Downloads",
+  subheading: "क्षेत्र से संबंधित महत्वपूर्ण दस्तावेज़",
+  documents: [
     {
-      title: "Temple Maintenance",
-      description: "Help maintain the beauty and sanctity of our sacred temple",
-      icon: "maintenance",
+      title: "क्षेत्र पूजा आरती चालीसा",
+      description:
+        "श्री चंद्रप्रभु भगवान की पूजा, आरती, चालीसा एवं स्तोत्र संग्रह",
+      file: "/documents/kshetra-puja-aarti-chalisa.pdf",
+      icon: "book",
     },
     {
-      title: "Anna Daan (Food)",
-      description: "Support daily meals for devotees and visitors",
-      icon: "food",
+      title: "मन्दिर निर्माण योजना विवरण",
+      description: "मन्दिर निर्माण हेतु सहयोग राशि की विस्तृत जानकारी",
+      file: "/documents/mandir-nirman-yojana.jpg",
+      icon: "donation",
     },
     {
-      title: "Education",
-      description: "Fund scriptural studies and spiritual education programs",
-      icon: "education",
+      title: "समाचार — दैनिक भास्कर (24 जनवरी 2026)",
+      description:
+        "शिलान्यास समारोह एवं 30वां दीक्षा महोत्सव — समाचार कवरेज",
+      file: "/documents/news-dainik-bhaskar-24jan.pdf",
+      icon: "news",
     },
     {
-      title: "Community Service",
-      description: "Support charitable activities for the underprivileged",
-      icon: "service",
+      title: "समाचार — दैनिक भास्कर (23 जनवरी 2026)",
+      description: "30वां दीक्षा महोत्सव शुरू — समाचार कवरेज",
+      file: "/documents/news-dainik-bhaskar-23jan.pdf",
+      icon: "news",
+    },
+    {
+      title: "समाचार — दैनिक भास्कर (22 जनवरी 2026)",
+      description:
+        "स्वस्तिभूषण माता जी का मंगल प्रवेश — समाचार कवरेज",
+      file: "/documents/news-dainik-bhaskar-22jan.pdf",
+      icon: "news",
+    },
+    {
+      title: "समाचार — दैनिक भास्कर (18 जनवरी 2026)",
+      description: "माता जी संघ का मंगल प्रवेश — समाचार कवरेज",
+      file: "/documents/news-dainik-bhaskar-18jan.pdf",
+      icon: "news",
     },
   ],
 };
 
 // ----- CONTACT SECTION -----
 export const CONTACT_SECTION = {
-  sectionLabel: "Contact Us",
-  heading: "Get in Touch",
-  subheading: "We welcome your queries, suggestions, and visit plans",
+  sectionLabel: "संपर्क करें",
+  heading: "संपर्क जानकारी",
+  headingEnglish: "Get in Touch",
+  subheading: "आपके प्रश्नों, सुझावों एवं दर्शन योजना हेतु संपर्क करें",
   address: {
-    line1: "Chandranchal Swasthi Teerth",
-    line2: "Pyawadi, Rajasthan",
-    line3: "India",
-    full: "Chandranchal Swasthi Teerth, Pyawadi, Rajasthan, India",
+    line1: "श्री दिगंबर (चंद्रांचल स्वस्ति तीर्थ)",
+    line2: "जैन अतिशय क्षेत्र प्यावड़ी",
+    line3: "तह. पीपलू, जिला टोंक, राजस्थान, भारत",
+    full: "श्री दिगंबर (चंद्रांचल स्वस्ति तीर्थ) जैन अतिशय क्षेत्र प्यावड़ी, तह. पीपलू, जिला टोंक, राजस्थान, भारत",
   },
-  phone: "+91 XXXXX XXXXX",
-  email: "info@chandranchalswasthiteerth.org",
+  phone: "+91 81249 67610",
+  additionalPhones: [
+    "+91 98298 64312",
+    "+91 72228 40419",
+    "+91 95098 65018",
+    "+91 77929 69333",
+    "+91 77370 38525",
+  ],
+  email: "jaintemplepyawari@gmail.com",
+  whatsapp: {
+    number: "918124967610",
+    url: "https://wa.me/918124967610",
+  },
   timings: {
-    morning: "6:00 AM - 12:00 PM",
-    evening: "4:00 PM - 8:00 PM",
-    label: "Darshan Timings",
+    morning: "प्रातः 6:00 - दोपहर 12:00",
+    evening: "सायं 4:00 - रात्रि 8:00",
+    label: "दर्शन समय",
   },
+  distances: [
+    { place: "रींगस रेलवे स्टेशन", distance: "25 km" },
+    { place: "जयपुर हवाई अड्डा", distance: "100 km" },
+    { place: "फुलेरा", distance: "5 km" },
+    { place: "सांभर", distance: "50 km" },
+    { place: "दिग्गी", distance: "45 km" },
+  ],
   googleMaps: {
     embedUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3601.5!2d75.7353942!3d26.3247822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396e87e736148e9b%3A0x52a98629e7a9fde7!2sChandranchal%20Swasti%20Trith%2C%20Pyawadi!5e0!3m2!1sen!2sin!4v1",
@@ -271,10 +474,10 @@ export const CONTACT_SECTION = {
 
 // ----- FOOTER -----
 export const FOOTER = {
-  copyright: `© ${new Date().getFullYear()} Chandranchal Swasthi Teerth. All Rights Reserved.`,
+  copyright: `© ${new Date().getFullYear()} श्री चंद्रांचल स्वस्ति तीर्थ | Chandraanchal Swasti Teerth. All Rights Reserved.`,
   tagline: "श्री चंद्रांचल स्वस्ति तीर्थ",
   description:
-    "A sacred Jain pilgrimage destination dedicated to spiritual growth, peace, and the eternal teachings of the Tirthankars.",
+    "श्री दिगंबर जैन अतिशय क्षेत्र प्यावड़ी — A sacred Jain pilgrimage destination dedicated to Lord Chandraprabhu and the eternal teachings of the Tirthankars.",
   quickLinks: [
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
@@ -286,7 +489,7 @@ export const FOOTER = {
     { platform: "facebook", url: "#" },
     { platform: "instagram", url: "#" },
     { platform: "youtube", url: "#" },
-    { platform: "whatsapp", url: "#" },
+    { platform: "whatsapp", url: "https://wa.me/918124967610" },
   ],
 };
 
@@ -304,7 +507,8 @@ export const SACRED_QUOTES = [
   },
   {
     text: "परस्परोपग्रहो जीवानाम्",
-    translation: "All life is bound together by mutual support and interdependence",
+    translation:
+      "All life is bound together by mutual support and interdependence",
     attribution: "Tattvartha Sutra",
   },
 ];
