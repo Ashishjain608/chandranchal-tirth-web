@@ -1,10 +1,13 @@
 import Header from "@/components/Header";
 import HeroCarousel from "@/components/HeroCarousel";
 import AboutSection from "@/components/AboutSection";
-import HighlightsSection from "@/components/HighlightsSection";
+import AtishaySection from "@/components/AtishaySection";
 import GallerySection from "@/components/GallerySection";
 import EventsSection from "@/components/EventsSection";
-import DonationSection from "@/components/DonationSection";
+import YojnayenSection from "@/components/YojnayenSection";
+import DocumentsSection from "@/components/DocumentsSection";
+import ShantidharaBooking from "@/components/ShantidharaBooking";
+import DonationUPI from "@/components/DonationUPI";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
@@ -15,10 +18,13 @@ export default function Home() {
       <main>
         <HeroCarousel />
         <AboutSection />
-        <HighlightsSection />
+        <AtishaySection />
         <GallerySection />
         <EventsSection />
-        <DonationSection />
+        <YojnayenSection />
+        <DocumentsSection />
+        <ShantidharaBooking />
+        <DonationUPI />
         <ContactSection />
       </main>
       <Footer />

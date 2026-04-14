@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ABOUT_SECTION } from "@/constants/content";
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
   const [imageError, setImageError] = useState(false);
 
+  // IntersectionObserver for scroll-triggered fade-in
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -31,6 +33,13 @@ export default function AboutSection() {
       }
     };
   }, []);
+
+  // Reset image error when tab changes
+  useEffect(() => {
+    setImageError(false);
+  }, [activeTab]);
+
+  const tab = ABOUT_SECTION.tabs[activeTab];
 
   return (
     <section
@@ -71,8 +80,8 @@ export default function AboutSection() {
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg shadow-xl">
               {!imageError ? (
                 <Image
-                  src={ABOUT_SECTION.image}
-                  alt={`${ABOUT_SECTION.heading} - ${ABOUT_SECTION.headingEnglish}`}
+                  src={tab.image}
+                  alt={`${tab.heading} - ${tab.headingEnglish}`}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
@@ -148,7 +157,7 @@ export default function AboutSection() {
                       />
                     </svg>
                     <p className="font-[family-name:var(--font-oswald)] text-lg font-light tracking-wide">
-                      Temple Image
+                      {tab.label} Image
                     </p>
                   </div>
                 </div>
@@ -158,6 +167,23 @@ export default function AboutSection() {
 
           {/* Right column - Text content */}
           <div>
+            {/* Tab buttons */}
+            <div className="mb-6 flex gap-3">
+              {ABOUT_SECTION.tabs.map((t, index) => (
+                <button
+                  key={t.id}
+                  onClick={() => setActiveTab(index)}
+                  className={`rounded-full px-6 py-2 text-sm font-[family-name:var(--font-oswald)] font-medium tracking-wide uppercase transition-all duration-300 ${
+                    activeTab === index
+                      ? "bg-primary text-white shadow-md"
+                      : "bg-white text-secondary hover:text-primary shadow-sm"
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+
             {/* Section label */}
             <span className="font-decorative text-3xl text-primary">
               {ABOUT_SECTION.sectionLabel}
@@ -165,12 +191,12 @@ export default function AboutSection() {
 
             {/* Hindi heading */}
             <h2 className="mt-2 text-3xl font-[family-name:var(--font-oswald)] font-semibold text-secondary sm:text-4xl lg:text-[42px] lg:leading-[1.2]">
-              {ABOUT_SECTION.heading}
+              {tab.heading}
             </h2>
 
             {/* English subheading */}
             <p className="mt-2 text-lg font-medium text-primary sm:text-xl">
-              {ABOUT_SECTION.headingEnglish}
+              {tab.headingEnglish}
             </p>
 
             {/* Decorative divider */}
@@ -182,7 +208,7 @@ export default function AboutSection() {
 
             {/* Paragraphs */}
             <div className="mt-6 space-y-4">
-              {ABOUT_SECTION.paragraphs.map((paragraph, index) => (
+              {tab.paragraphs.map((paragraph, index) => (
                 <p
                   key={index}
                   className="text-base leading-relaxed text-text-light"
@@ -194,7 +220,7 @@ export default function AboutSection() {
 
             {/* Stats row */}
             <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
-              {ABOUT_SECTION.stats.map((stat, index) => (
+              {tab.stats.map((stat, index) => (
                 <div key={index} className="text-center sm:text-left">
                   <div className="font-[family-name:var(--font-oswald)] text-3xl font-bold text-primary sm:text-4xl">
                     {stat.number}

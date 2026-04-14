@@ -106,15 +106,33 @@ const PLACEHOLDER_GRADIENTS = [
   "linear-gradient(135deg, #e6a898 0%, #f6e0db 50%, #eaf7fa 100%)",
 ];
 
-// Row span configuration for masonry-like effect
-// Indices 0, 2, 5 span 2 rows; others span 1
-const ROW_SPANS = [2, 1, 2, 1, 1, 2, 1, 1];
+// Row span configuration for masonry-like effect (simplified for fewer images per category)
+const ROW_SPANS = [2, 1, 1, 2, 1, 2, 1, 1];
+
+// Tab definitions
+const TABS = [
+  ...GALLERY_SECTION.categories.map((cat) => ({
+    id: cat.id,
+    label: cat.label,
+  })),
+  { id: "videos", label: "वीडियो" },
+];
 
 export default function GallerySection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string>(
+    GALLERY_SECTION.categories[0]?.id || "temple"
+  );
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
+  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
+  const [videoModalIndex, setVideoModalIndex] = useState<number | null>(null);
+
+  // Get the current images array based on active category
+  const currentCategory = GALLERY_SECTION.categories.find(
+    (cat) => cat.id === activeCategory
+  );
+  const currentImages = currentCategory?.images || [];
 
   // Intersection Observer for fade-in animation
   useEffect(() => {
@@ -140,9 +158,9 @@ export default function GallerySection() {
     };
   }, []);
 
-  // Lock body scroll when lightbox is open
+  // Lock body scroll when lightbox or video modal is open
   useEffect(() => {
-    if (lightboxIndex !== null) {
+    if (lightboxIndex !== null || videoModalIndex !== null) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -150,7 +168,7 @@ export default function GallerySection() {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [lightboxIndex]);
+  }, [lightboxIndex, videoModalIndex]);
 
   // Keyboard navigation for lightbox
   useEffect(() => {
@@ -161,13 +179,12 @@ export default function GallerySection() {
         setLightboxIndex(null);
       } else if (e.key === "ArrowRight") {
         setLightboxIndex((prev) =>
-          prev !== null ? (prev + 1) % GALLERY_SECTION.images.length : null
+          prev !== null ? (prev + 1) % currentImages.length : null
         );
       } else if (e.key === "ArrowLeft") {
         setLightboxIndex((prev) =>
           prev !== null
-            ? (prev - 1 + GALLERY_SECTION.images.length) %
-              GALLERY_SECTION.images.length
+            ? (prev - 1 + currentImages.length) % currentImages.length
             : null
         );
       }
@@ -175,10 +192,24 @@ export default function GallerySection() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxIndex]);
+  }, [lightboxIndex, currentImages.length]);
 
-  const handleImageError = useCallback((index: number) => {
-    setImageErrors((prev) => new Set(prev).add(index));
+  // Keyboard handling for video modal
+  useEffect(() => {
+    if (videoModalIndex === null) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setVideoModalIndex(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [videoModalIndex]);
+
+  const handleImageError = useCallback((errorKey: string) => {
+    setImageErrors((prev) => new Set(prev).add(errorKey));
   }, []);
 
   const openLightbox = (index: number) => setLightboxIndex(index);
@@ -187,15 +218,14 @@ export default function GallerySection() {
   const goToPrev = () => {
     setLightboxIndex((prev) =>
       prev !== null
-        ? (prev - 1 + GALLERY_SECTION.images.length) %
-          GALLERY_SECTION.images.length
+        ? (prev - 1 + currentImages.length) % currentImages.length
         : null
     );
   };
 
   const goToNext = () => {
     setLightboxIndex((prev) =>
-      prev !== null ? (prev + 1) % GALLERY_SECTION.images.length : null
+      prev !== null ? (prev + 1) % currentImages.length : null
     );
   };
 
@@ -233,9 +263,12 @@ export default function GallerySection() {
             <span className="font-decorative text-3xl md:text-4xl text-primary inline-block mb-2">
               {GALLERY_SECTION.sectionLabel}
             </span>
-            <h2 className="font-[family-name:var(--font-oswald)] text-3xl font-semibold text-secondary uppercase tracking-wide mb-4 sm:text-4xl lg:text-5xl">
+            <h2 className="font-[family-name:var(--font-oswald)] text-3xl font-semibold text-secondary uppercase tracking-wide mb-2 sm:text-4xl lg:text-5xl">
               {GALLERY_SECTION.heading}
             </h2>
+            <p className="font-[family-name:var(--font-oswald)] text-lg text-secondary/70 tracking-wide mb-4 sm:text-xl">
+              {GALLERY_SECTION.headingEnglish}
+            </p>
             <p className="text-text-light text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
               {GALLERY_SECTION.subheading}
             </p>
@@ -247,92 +280,184 @@ export default function GallerySection() {
             </div>
           </div>
 
-          {/* Masonry-style Grid */}
-          <div className="grid grid-cols-1 gap-4 auto-rows-[220px] sm:grid-cols-2 sm:auto-rows-[200px] lg:grid-cols-4 md:gap-5">
-            {GALLERY_SECTION.images.map((image, index) => {
-              const showPlaceholder = imageErrors.has(index);
-              const spanRows = ROW_SPANS[index] || 1;
+          {/* Category Tabs */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+            {TABS.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => {
+                  setActiveCategory(tab.id);
+                  setLightboxIndex(null);
+                }}
+                className={`px-6 py-2.5 rounded-full font-[family-name:var(--font-oswald)] text-sm sm:text-base font-medium tracking-wide transition-all duration-300 ${
+                  activeCategory === tab.id
+                    ? "bg-primary text-white shadow-md shadow-primary/30"
+                    : "bg-white text-secondary hover:bg-primary/10 shadow-sm"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
 
-              return (
-                <div
-                  key={index}
-                  className={`gallery-item group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 ${
-                    spanRows === 2 ? "sm:row-span-2" : "row-span-1"
-                  }`}
-                  style={{
-                    animationDelay: `${index * 100}ms`,
-                  }}
-                  onClick={() => openLightbox(index)}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`View ${image.caption}`}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      openLightbox(index);
-                    }
-                  }}
-                >
-                  {/* Image or Placeholder */}
-                  {showPlaceholder ? (
-                    renderPlaceholder(index)
-                  ) : (
-                    <>
-                      {renderPlaceholder(index)}
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-[1.08]"
-                        onError={() => handleImageError(index)}
-                      />
-                    </>
-                  )}
+          {/* Image Grid (for temple and events categories) */}
+          {activeCategory !== "videos" && (
+            <div className="grid grid-cols-1 gap-4 auto-rows-[220px] sm:grid-cols-2 sm:auto-rows-[200px] lg:grid-cols-3 md:gap-5">
+              {currentImages.map((image, index) => {
+                const errorKey = `${activeCategory}-${index}`;
+                const showPlaceholder = imageErrors.has(errorKey);
+                const spanRows = ROW_SPANS[index % ROW_SPANS.length] || 1;
 
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/60 transition-all duration-500 flex items-end">
-                    <div className="w-full p-4 md:p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                      <p className="text-white font-[family-name:var(--font-oswald)] text-lg md:text-xl font-medium tracking-wide">
-                        {image.caption}
-                      </p>
-                      <p className="text-white/70 text-sm mt-1 line-clamp-2">
-                        {image.alt}
+                return (
+                  <div
+                    key={`${activeCategory}-${index}`}
+                    className={`gallery-item group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 ${
+                      spanRows === 2 ? "sm:row-span-2" : "row-span-1"
+                    }`}
+                    style={{
+                      animationDelay: `${index * 100}ms`,
+                    }}
+                    onClick={() => openLightbox(index)}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`View ${image.caption}`}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        openLightbox(index);
+                      }
+                    }}
+                  >
+                    {/* Image or Placeholder */}
+                    {showPlaceholder ? (
+                      renderPlaceholder(index)
+                    ) : (
+                      <>
+                        {renderPlaceholder(index)}
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.08]"
+                          onError={() => handleImageError(errorKey)}
+                        />
+                      </>
+                    )}
+
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/60 transition-all duration-500 flex items-end">
+                      <div className="w-full p-4 md:p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                        <p className="text-white font-[family-name:var(--font-oswald)] text-lg md:text-xl font-medium tracking-wide">
+                          {image.caption}
+                        </p>
+                        <p className="text-white/70 text-sm mt-1 line-clamp-2">
+                          {image.alt}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Zoom icon indicator */}
+                    <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/0 group-hover:bg-white/20 flex items-center justify-center transition-all duration-500 opacity-0 group-hover:opacity-100">
+                      <svg
+                        className="w-4 h-4 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Videos Grid */}
+          {activeCategory === "videos" && (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {GALLERY_SECTION.videos.map((video, index) => {
+                const errorKey = `video-thumb-${index}`;
+                const showPlaceholder = imageErrors.has(errorKey);
+
+                return (
+                  <div
+                    key={index}
+                    className="group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 cursor-pointer"
+                    onClick={() => setVideoModalIndex(index)}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Play video: ${video.caption}`}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        setVideoModalIndex(index);
+                      }
+                    }}
+                  >
+                    {/* Thumbnail */}
+                    <div className="relative aspect-video bg-secondary/10">
+                      {showPlaceholder ? (
+                        renderPlaceholder(index)
+                      ) : (
+                        <>
+                          {renderPlaceholder(index)}
+                          <Image
+                            src={video.thumbnail}
+                            alt={video.caption}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+                            onError={() => handleImageError(errorKey)}
+                          />
+                        </>
+                      )}
+
+                      {/* Dark overlay */}
+                      <div className="absolute inset-0 bg-secondary/30 group-hover:bg-secondary/50 transition-all duration-300" />
+
+                      {/* Play button overlay */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary/90 group-hover:bg-primary flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-lg shadow-primary/30">
+                          <svg
+                            className="w-7 h-7 md:w-8 md:h-8 text-white ml-1"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Caption */}
+                    <div className="p-4 bg-white">
+                      <p className="font-[family-name:var(--font-oswald)] text-lg font-medium tracking-wide text-secondary group-hover:text-primary transition-colors duration-300">
+                        {video.caption}
                       </p>
                     </div>
                   </div>
-
-                  {/* Zoom icon indicator */}
-                  <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/0 group-hover:bg-white/20 flex items-center justify-center transition-all duration-500 opacity-0 group-hover:opacity-100">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Lightbox Modal */}
-      {lightboxIndex !== null && (
+      {/* Image Lightbox Modal */}
+      {lightboxIndex !== null && activeCategory !== "videos" && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
           onClick={closeLightbox}
           role="dialog"
           aria-modal="true"
-          aria-label={`Gallery image: ${GALLERY_SECTION.images[lightboxIndex].caption}`}
+          aria-label={`Gallery image: ${currentImages[lightboxIndex]?.caption}`}
         >
           {/* Close Button */}
           <button
@@ -408,7 +533,7 @@ export default function GallerySection() {
             className="relative w-[90vw] h-[75vh] md:w-[80vw] md:h-[80vh] max-w-5xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {imageErrors.has(lightboxIndex) ? (
+            {imageErrors.has(`${activeCategory}-${lightboxIndex}`) ? (
               <div
                 className="w-full h-full rounded-lg flex items-center justify-center"
                 style={{
@@ -422,12 +547,12 @@ export default function GallerySection() {
               </div>
             ) : (
               <Image
-                src={GALLERY_SECTION.images[lightboxIndex].src}
-                alt={GALLERY_SECTION.images[lightboxIndex].alt}
+                src={currentImages[lightboxIndex].src}
+                alt={currentImages[lightboxIndex].alt}
                 fill
                 sizes="90vw"
                 className="object-contain rounded-lg"
-                onError={() => handleImageError(lightboxIndex)}
+                onError={() => handleImageError(`${activeCategory}-${lightboxIndex}`)}
                 priority
               />
             )}
@@ -436,11 +561,66 @@ export default function GallerySection() {
           {/* Caption */}
           <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 text-center">
             <p className="text-white font-[family-name:var(--font-oswald)] text-xl md:text-2xl font-medium tracking-wide">
-              {GALLERY_SECTION.images[lightboxIndex].caption}
+              {currentImages[lightboxIndex]?.caption}
             </p>
             <p className="text-white/60 text-sm mt-1">
-              {lightboxIndex + 1} / {GALLERY_SECTION.images.length}
+              {lightboxIndex + 1} / {currentImages.length}
             </p>
+          </div>
+        </div>
+      )}
+
+      {/* Video Modal */}
+      {videoModalIndex !== null && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          onClick={() => setVideoModalIndex(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Video: ${GALLERY_SECTION.videos[videoModalIndex]?.caption}`}
+        >
+          {/* Close Button */}
+          <button
+            onClick={() => setVideoModalIndex(null)}
+            className="absolute top-4 right-4 md:top-6 md:right-6 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-300 group"
+            aria-label="Close video"
+          >
+            <svg
+              className="w-6 h-6 text-white group-hover:rotate-90 transition-transform duration-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
+          {/* Video Player */}
+          <div
+            className="relative w-[90vw] max-w-4xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <video
+              src={GALLERY_SECTION.videos[videoModalIndex].src}
+              controls
+              autoPlay
+              className="w-full rounded-lg shadow-2xl"
+              style={{ maxHeight: "80vh" }}
+            >
+              Your browser does not support the video element.
+            </video>
+
+            {/* Caption */}
+            <div className="mt-4 text-center">
+              <p className="text-white font-[family-name:var(--font-oswald)] text-xl md:text-2xl font-medium tracking-wide">
+                {GALLERY_SECTION.videos[videoModalIndex].caption}
+              </p>
+            </div>
           </div>
         </div>
       )}
