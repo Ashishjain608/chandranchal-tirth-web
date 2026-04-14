@@ -98,6 +98,21 @@ export default function ShantidharaBooking() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
           {/* ======== Left Column: Header + Pricing ======== */}
           <div>
+            {/* Decorative image */}
+            <div className="relative mb-8 aspect-[16/9] w-full overflow-hidden rounded-xl shadow-lg">
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: "url(/images/gallery-1.jpg)",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to top, rgba(54,62,90,0.4), transparent)" }}
+              />
+            </div>
             {/* Section label */}
             <span className="font-decorative text-3xl text-primary sm:text-4xl">
               {SHANTIDHARA_SECTION.sectionLabel}

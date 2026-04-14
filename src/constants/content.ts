@@ -62,47 +62,46 @@ export const HERO_SLIDES = [
   },
 ];
 
-// ----- ABOUT SECTION (Tabbed: Temple + Mataji) -----
+// ----- ABOUT SECTION (No tabs — temple + mataji stacked) -----
 export const ABOUT_SECTION = {
   sectionLabel: "हमारे बारे में",
-  tabs: [
-    {
-      id: "temple",
-      label: "तीर्थ परिचय",
-      heading: "श्री चंद्रांचल स्वस्ति तीर्थ",
-      headingEnglish: "A Sacred Jain Pilgrimage Destination",
-      paragraphs: [
-        "श्री चंद्रांचल स्वस्ति तीर्थ, प्यावड़ी (तह. पीपलू, जिला टोंक, राजस्थान) एक प्राचीन एवं ऐतिहासिक दिगंबर जैन अतिशय क्षेत्र है। यहाँ विराजमान श्री 1008 चंद्रप्रभु भगवान मूलनायक के रूप में पूजित हैं।",
-        "इस पावन क्षेत्र में विक्रम संवत 1904 से 1919 तक की प्राचीन प्रतिमाएँ स्थापित हैं, जो 800 वर्ष से अधिक पुरानी हैं। मंदिर परिसर में कुल 15 पवित्र प्रतिमाएँ विराजमान हैं।",
-        "यहाँ 33 से अधिक प्रमाणित अतिशय (चमत्कार) घटित हुए हैं, जिनमें प्रतिमाओं पर केसर प्रकट होना प्रमुख है। यह क्षेत्र श्री स्वस्ति कल्याण समिति (रजि.), दिल्ली द्वारा संचालित है।",
-      ],
-      image: "/images/about-temple.jpg",
-      stats: [
-        { number: "800+", label: "वर्ष प्राचीन" },
-        { number: "15", label: "पवित्र प्रतिमाएँ" },
-        { number: "33+", label: "प्रमाणित अतिशय" },
-        { number: "1000+", label: "मासिक दर्शनार्थी" },
-      ],
-    },
-    {
-      id: "mataji",
-      label: "माता जी परिचय",
-      heading: "गणिनी आर्यिका १०५ श्री स्वस्तिभूषण माता जी",
-      headingEnglish: "Our Spiritual Guide",
-      paragraphs: [
-        "भारत गौरव, परम विदुषी, लेखिका, शास्त्रवाचनिका, जादूपुरी स्वस्तिधाम तीर्थ प्रणेत्री गणिनी आर्यिका १०५ श्री स्वस्तिभूषण माता जी चंद्रांचल स्वस्ति तीर्थ की प्रेरणास्रोत एवं मार्गदर्शिका हैं।",
-        "माता जी ने 30 से अधिक वर्ष पूर्व दीक्षा ग्रहण की और तब से जैन धर्म के प्रचार-प्रसार, आध्यात्मिक शिक्षा एवं समाज सेवा में अपना जीवन समर्पित किया है।",
-        "उनके पावन सानिध्य में अनेक तीर्थ क्षेत्रों का विकास हुआ है, जिनमें श्री मुनिसुव्रतनाथ दिगंबर जैन अतिशय क्षेत्र स्वस्तिधाम, जहाजपुर (भीलवाड़ा) प्रमुख है।",
-      ],
-      image: "/images/about-mataji.jpg",
-      stats: [
-        { number: "30+", label: "वर्ष दीक्षित" },
-        { number: "100+", label: "ग्रंथ लिखित" },
-        { number: "1000+", label: "प्रवचन" },
-        { number: "5+", label: "तीर्थ विकसित" },
-      ],
-    },
-  ],
+  temple: {
+    heading: "श्री चंद्रांचल स्वस्ति तीर्थ",
+    headingEnglish: "A Sacred Jain Pilgrimage Destination",
+    paragraphs: [
+      "श्री चंद्रांचल स्वस्ति तीर्थ, प्यावड़ी (तह. पीपलू, जिला टोंक, राजस्थान) एक प्राचीन एवं ऐतिहासिक दिगंबर जैन अतिशय क्षेत्र है। यहाँ विराजमान श्री 1008 चंद्रप्रभु भगवान मूलनायक के रूप में पूजित हैं।",
+      "इस पावन क्षेत्र में विक्रम संवत 1904 से 1919 तक की प्राचीन प्रतिमाएँ स्थापित हैं, जो 800 वर्ष से अधिक पुरानी हैं। मंदिर परिसर में कुल 15 पवित्र प्रतिमाएँ विराजमान हैं।",
+      "यहाँ 33 से अधिक प्रमाणित अतिशय (चमत्कार) घटित हुए हैं, जिनमें प्रतिमाओं पर केसर प्रकट होना प्रमुख है। यह क्षेत्र श्री स्वस्ति कल्याण समिति (रजि.), दिल्ली द्वारा संचालित है।",
+    ],
+    image: "/images/about-temple.jpg",
+    stats: [
+      { number: "800+", label: "वर्ष प्राचीन" },
+      { number: "15", label: "पवित्र प्रतिमाएँ" },
+      { number: "33+", label: "प्रमाणित अतिशय" },
+      { number: "1000+", label: "मासिक दर्शनार्थी" },
+    ],
+  },
+  mataji: {
+    heading: "गणिनी आर्यिका १०५ श्री स्वस्तिभूषण माता जी",
+    headingEnglish: "Our Spiritual Guide",
+    paragraphs: [
+      "भारत गौरव, परम विदुषी, लेखिका, शास्त्रवाचनिका, जादूपुरी स्वस्तिधाम तीर्थ प्रणेत्री गणिनी आर्यिका १०५ श्री स्वस्तिभूषण माता जी चंद्रांचल स्वस्ति तीर्थ की प्रेरणास्रोत एवं मार्गदर्शिका हैं।",
+      "माता जी ने 30 से अधिक वर्ष पूर्व दीक्षा ग्रहण की और तब से जैन धर्म के प्रचार-प्रसार, आध्यात्मिक शिक्षा एवं समाज सेवा में अपना जीवन समर्पित किया है।",
+      "उनके पावन सानिध्य में अनेक तीर्थ क्षेत्रों का विकास हुआ है, जिनमें श्री मुनिसुव्रतनाथ दिगंबर जैन अतिशय क्षेत्र स्वस्तिधाम, जहाजपुर (भीलवाड़ा) प्रमुख है।",
+    ],
+    image: "/images/about-mataji.jpg",
+    thumbnails: [
+      { src: "/images/mataji-blessing.jpg", alt: "माता जी — आशीर्वाद" },
+      { src: "/images/mataji-joyful.jpg", alt: "माता जी — प्रसन्न मुद्रा" },
+      { src: "/images/mataji-candid.jpg", alt: "माता जी — सहज मुद्रा" },
+    ],
+    stats: [
+      { number: "30+", label: "वर्ष दीक्षित" },
+      { number: "100+", label: "ग्रंथ लिखित" },
+      { number: "1000+", label: "प्रवचन" },
+      { number: "5+", label: "तीर्थ विकसित" },
+    ],
+  },
 };
 
 // ----- ATISHAY SECTION (Miracles / replaces old HIGHLIGHTS) -----
@@ -152,69 +151,72 @@ export const ATISHAY_SECTION = {
   ],
 };
 
-// ----- GALLERY SECTION (with categories and videos) -----
+// ----- GALLERY SECTION (no category tabs — flat image list + videos) -----
 export const GALLERY_SECTION = {
   sectionLabel: "गैलरी",
   heading: "पवित्र दृश्य",
   headingEnglish: "Sacred Glimpses",
   subheading: "चंद्रांचल स्वस्ति तीर्थ की दिव्य छवियाँ एवं वीडियो",
-  categories: [
+  images: [
     {
-      id: "temple",
-      label: "मंदिर फोटो",
-      images: [
-        {
-          src: "/images/gallery-1.jpg",
-          alt: "श्री चंद्रप्रभु भगवान — मूलनायक",
-          caption: "श्री चंद्रप्रभु भगवान (मूलनायक)",
-        },
-        {
-          src: "/images/gallery-2.jpg",
-          alt: "मुख्य मंदिर गर्भगृह का विहंगम दृश्य",
-          caption: "मुख्य मंदिर गर्भगृह",
-        },
-        {
-          src: "/images/gallery-3.jpg",
-          alt: "पवित्र प्रतिमाओं का समूह",
-          caption: "पवित्र मूर्तियाँ",
-        },
-        {
-          src: "/images/gallery-4.jpg",
-          alt: "प्राचीन क्षेत्रपाल देव प्रतिमा",
-          caption: "प्राचीन क्षेत्रपाल देव",
-        },
-        {
-          src: "/images/gallery-5.jpg",
-          alt: "वर्तमान मंदिर भवन — प्यावड़ी",
-          caption: "वर्तमान मंदिर भवन",
-        },
-        {
-          src: "/images/gallery-6.jpg",
-          alt: "माता जी मंदिर परिसर में",
-          caption: "माता जी मंदिर परिसर में",
-        },
-        {
-          src: "/images/gallery-7.jpg",
-          alt: "श्री स्वस्तिभूषण माता जी",
-          caption: "श्री स्वस्तिभूषण माता जी",
-        },
-        {
-          src: "/images/gallery-8.jpg",
-          alt: "माता जी — आशीर्वाद मुद्रा",
-          caption: "माता जी — आशीर्वाद मुद्रा",
-        },
-      ],
+      src: "/images/gallery-1.jpg",
+      alt: "श्री चंद्रप्रभु भगवान — मूलनायक",
+      caption: "श्री चंद्रप्रभु भगवान (मूलनायक)",
     },
     {
-      id: "events",
-      label: "कार्यक्रम",
-      images: [
-        {
-          src: "/images/event-1.jpg",
-          alt: "शिलान्यास समारोह — जनवरी 2026",
-          caption: "शिलान्यास समारोह एवं 30वां दीक्षा जयंती महोत्सव",
-        },
-      ],
+      src: "/images/gallery-2.jpg",
+      alt: "मुख्य मंदिर गर्भगृह का विहंगम दृश्य",
+      caption: "मुख्य मंदिर गर्भगृह",
+    },
+    {
+      src: "/images/gallery-3.jpg",
+      alt: "पवित्र प्रतिमाओं का समूह",
+      caption: "पवित्र मूर्तियाँ",
+    },
+    {
+      src: "/images/gallery-4.jpg",
+      alt: "प्राचीन क्षेत्रपाल देव प्रतिमा",
+      caption: "प्राचीन क्षेत्रपाल देव",
+    },
+    {
+      src: "/images/gallery-5.jpg",
+      alt: "वर्तमान मंदिर भवन — प्यावड़ी",
+      caption: "वर्तमान मंदिर भवन",
+    },
+    {
+      src: "/images/gallery-6.jpg",
+      alt: "माता जी मंदिर परिसर में",
+      caption: "माता जी मंदिर परिसर में",
+    },
+    {
+      src: "/images/gallery-7.jpg",
+      alt: "श्री स्वस्तिभूषण माता जी",
+      caption: "श्री स्वस्तिभूषण माता जी",
+    },
+    {
+      src: "/images/gallery-8.jpg",
+      alt: "माता जी — आशीर्वाद मुद्रा",
+      caption: "माता जी — आशीर्वाद मुद्रा",
+    },
+    {
+      src: "/images/event-1.jpg",
+      alt: "शिलान्यास समारोह — जनवरी 2026",
+      caption: "शिलान्यास समारोह एवं 30वां दीक्षा जयंती महोत्सव",
+    },
+    {
+      src: "/images/mataji-blessing.jpg",
+      alt: "माता जी — आशीर्वाद",
+      caption: "माता जी — आशीर्वाद",
+    },
+    {
+      src: "/images/mataji-joyful.jpg",
+      alt: "माता जी — प्रसन्न मुद्रा",
+      caption: "माता जी — प्रसन्न मुद्रा",
+    },
+    {
+      src: "/images/mataji-standing.jpg",
+      alt: "माता जी — पूर्ण दृश्य",
+      caption: "माता जी — पूर्ण दृश्य",
     },
   ],
   videos: [
@@ -245,6 +247,22 @@ export const GALLERY_SECTION = {
     },
   ],
 };
+
+// ----- IMAGE MARQUEE ITEMS -----
+export const IMAGE_MARQUEE_ITEMS = [
+  { src: "/images/gallery-1.jpg", alt: "श्री चंद्रप्रभु भगवान" },
+  { src: "/images/about-mataji.jpg", alt: "श्री स्वस्तिभूषण माता जी" },
+  { src: "/images/gallery-2.jpg", alt: "मुख्य मंदिर गर्भगृह" },
+  { src: "/images/mataji-blessing.jpg", alt: "माता जी — आशीर्वाद" },
+  { src: "/images/gallery-3.jpg", alt: "पवित्र मूर्तियाँ" },
+  { src: "/images/mataji-joyful.jpg", alt: "माता जी — प्रसन्न मुद्रा" },
+  { src: "/images/gallery-5.jpg", alt: "वर्तमान मंदिर भवन" },
+  { src: "/images/about-temple.jpg", alt: "चंद्रांचल स्वस्ति तीर्थ" },
+  { src: "/images/gallery-4.jpg", alt: "प्राचीन क्षेत्रपाल देव" },
+  { src: "/images/mataji-candid.jpg", alt: "माता जी — सहज मुद्रा" },
+  { src: "/images/event-1.jpg", alt: "शिलान्यास समारोह" },
+  { src: "/images/mataji-standing.jpg", alt: "माता जी" },
+];
 
 // ----- EVENTS SECTION -----
 export const EVENTS_SECTION = {
@@ -330,6 +348,8 @@ export const YOJANAYEN_SECTION = {
     accountNo: "12880100019646",
     ifsc: "BARB0PIPLOO",
     bank: "Bank of Baroda, Peeplu Branch",
+    upiNote:
+      "UPI ID जल्द ही उपलब्ध होगा। कृपया बैंक ट्रांसफर या संपर्क अनुभाग का उपयोग करें।",
   },
 };
 

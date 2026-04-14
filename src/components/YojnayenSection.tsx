@@ -225,6 +225,12 @@ export default function YojnayenSection() {
               </span>
             </div>
           </div>
+          {/* UPI Note */}
+          {YOJANAYEN_SECTION.bankDetails.upiNote && (
+            <p className="mt-4 text-center text-sm text-white/50 italic">
+              {YOJANAYEN_SECTION.bankDetails.upiNote}
+            </p>
+          )}
         </div>
       </div>
     </section>
